@@ -3,12 +3,14 @@ using UnityEngine;
 
 namespace LabyrinthSystem
 {
+	[System.Serializable]
 	public class Cell
 	{
 		Vector2Int position;
 		
 		public CellNeighbours Neighbours { get; set; }
 		public CellNeighbours linkNeigbours;
+
 		public List<Cell> Links = new List<Cell>();
 
 		public Cell(int row, int column)

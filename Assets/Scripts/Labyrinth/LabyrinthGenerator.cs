@@ -1,6 +1,6 @@
 ﻿namespace LabyrinthSystem
 {
-	class LabyrinthGenerator : ILabyrinthGenerator
+	public class LabyrinthGenerator : ILabyrinthGenerator
 	{
 		public Maze GenerateLabyrinth(int size_x, int size_y)
 		{

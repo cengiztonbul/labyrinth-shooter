@@ -2,17 +2,17 @@
 
 namespace LabyrinthSystem
 {
+	[System.Serializable]
 	public class Maze
 	{
 		public int Height { get; private set; }
 		public int Width { get; private set; }
 		public int CellCount { get; private set; }
 
-		public Cell[,] Cells { get; protected set; }
+		public Cell[] _cells;
 
 		public Maze(int height, int width)
 		{
-			
 			Height = height;
 			Width = width;
 			CellCount = height * width;
@@ -23,13 +23,14 @@ namespace LabyrinthSystem
 
 		private void InitGrid()
 		{
-			Cells = new Cell[Height, Width];
+			_cells = new Cell[Height * Width];
+
 			
 			for (int i = 0; i < Height; i++)
 			{
 				for (int j = 0; j < Width; j++)
 				{
-					Cells[i, j] = new Cell(i, j);
+					_cells[j * Width + i] = new Cell(i, j);
 				}
 			}
 		}
@@ -42,19 +43,19 @@ namespace LabyrinthSystem
 				{
 					if (y > 0)
 					{
-						Cells[y, x].Neighbours.North = Cells[y - 1, x];
+						GetCell(y, x).Neighbours.North = GetCell(y - 1, x);
 					}
 					if (y < (Height - 1))
 					{
-						Cells[y, x].Neighbours.South = Cells[y + 1, x];
+						GetCell(y, x).Neighbours.South = GetCell(y + 1, x);
 					}
 					if (x < (Width - 1))
 					{
-						Cells[y, x].Neighbours.East = Cells[y, x + 1];
+						GetCell(y, x).Neighbours.East = GetCell(y, x + 1);
 					}
 					if (x > 0)
 					{
-						Cells[y, x].Neighbours.West = Cells[y, x - 1];
+						GetCell(y, x).Neighbours.West = GetCell(y, x - 1);
 					}
 				}
 			}
@@ -65,12 +66,13 @@ namespace LabyrinthSystem
 
 			int row = Random.Range(0, Height);
 			int column = Random.Range(0, Width);
-			return Cells[row, column];
+			return GetCell(row, column);
 		}
 
 		public Cell GetCell(int x, int y)
 		{
-			return Cells[x, y];
+			return _cells[y * Width + x];
 		}
 	}
+	
 }

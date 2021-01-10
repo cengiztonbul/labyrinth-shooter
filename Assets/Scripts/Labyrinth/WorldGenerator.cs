@@ -7,7 +7,7 @@ namespace LabyrinthSystem
 		public GameObject wall;
 		public GameObject ground;
 
-		LabyrinthGenerator labyrinthGenerator;
+		public LabyrinthGenerator labyrinthGenerator;
 
 
 		private void Awake()
@@ -16,20 +16,21 @@ namespace LabyrinthSystem
 		}
 
 
-		public void GenerateWorld(int size_x, int size_y)
+		public Maze GenerateWorld(int size_x, int size_y)
 		{
-			Maze m = labyrinthGenerator.GenerateLabyrinth(size_x, size_y);
-			InstantiateLabyrinth(m);
+			Maze maze = labyrinthGenerator.GenerateLabyrinth(size_x, size_y);
+			InstantiateLabyrinth(maze);
+			return maze;
 		}
 
 
-		void InstantiateLabyrinth(Maze labyrinth)
+		public void InstantiateLabyrinth(Maze labyrinth)
 		{
-			for (int i = 0; i < labyrinth.Cells.GetLength(0); i++)
+			for (int i = 0; i < labyrinth.Width; i++)
 			{
-				for (int j = 0; j < labyrinth.Cells.GetLength(1); j++)
+				for (int j = 0; j < labyrinth.Height; j++)
 				{
-					InstantiateCell(labyrinth.Cells[i, j], i, j);
+					InstantiateCell(labyrinth.GetCell(i, j), i, j);
 				}
 			}
 		}
