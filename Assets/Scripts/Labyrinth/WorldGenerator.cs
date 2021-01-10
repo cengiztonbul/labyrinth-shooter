@@ -15,13 +15,8 @@ namespace LabyrinthSystem
 			labyrinthGenerator = new LabyrinthGenerator();	
 		}
 
-		private void Start()
-		{
-			GenerateWorld(20, 20);		
-		}
-	
 
-		void GenerateWorld(int size_x, int size_y)
+		public void GenerateWorld(int size_x, int size_y)
 		{
 			Maze m = labyrinthGenerator.GenerateLabyrinth(size_x, size_y);
 			InstantiateLabyrinth(m);
