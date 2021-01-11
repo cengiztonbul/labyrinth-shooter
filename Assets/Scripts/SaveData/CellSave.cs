@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using LabyrinthSystem;
 
+[System.Serializable]
 public class CellSave
 {
-	public Vector2Int Position { get; set; }
+	public PositionIndex Position { get; set; }
 
 	public CellNeighbourIndicies Neigbours { get; set; }
 	

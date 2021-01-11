@@ -16,18 +16,26 @@ public class GameInit : MonoBehaviour
 	public void SaveGame()
 	{
 		GameData saveData = new GameData();
-		saveData.labyrinth = maze;
+		saveData.labyrinth = maze.GetSaveData();
 		BayatGames.SaveGameFree.SaveGame.Save<GameData>("game_data", saveData);
+		Vector2Int pos = new Vector2Int(1, 4);
+		BayatGames.SaveGameFree.SaveGame.Save<Vector2Int>("pos", pos);
+
 	}
 
 	public void Init(GameData gd)
 	{
-		worldGenerator.InstantiateLabyrinth(gd.labyrinth);
+		Maze m = new Maze(gd.labyrinth);
+		worldGenerator.InstantiateLabyrinth(m);
 	}
 
 	public void LoadGameData()
 	{
+
 		GameData gd = BayatGames.SaveGameFree.SaveGame.Load<GameData>("game_data");
-		worldGenerator.InstantiateLabyrinth(gd.labyrinth);
+		Vector2Int pos = BayatGames.SaveGameFree.SaveGame.Load<Vector2Int>("pos");
+		Debug.Log("loaded_pos: " + pos);
+		Maze m = new Maze(gd.labyrinth);
+		worldGenerator.InstantiateLabyrinth(m);
 	}
 }

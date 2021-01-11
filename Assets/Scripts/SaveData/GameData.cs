@@ -3,5 +3,5 @@ using LabyrinthSystem;
 [System.Serializable]
 public class GameData
 {
-	public Maze labyrinth { get; set; }
+	public MazeSave labyrinth { get; set; }
 }

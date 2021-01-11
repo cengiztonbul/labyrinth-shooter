@@ -2,11 +2,12 @@
 
 namespace LabyrinthSystem
 {
+	[System.Serializable]
 	public class CellNeighbourIndicies
 	{
-		public Vector2Int North { get; set; }
-		public Vector2Int South { get; set; }
-		public Vector2Int East { get; set; }
-		public Vector2Int West { get; set; }
+		public PositionIndex North { get; set; }
+		public PositionIndex South { get; set; }
+		public PositionIndex East { get; set; }
+		public PositionIndex West { get; set; }
 	}
 }

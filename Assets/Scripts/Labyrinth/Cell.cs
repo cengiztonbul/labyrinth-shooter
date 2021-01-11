@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace LabyrinthSystem
 {
-	[System.Serializable]
 	public class Cell
 	{
 		Vector2Int position;
@@ -22,6 +21,20 @@ namespace LabyrinthSystem
 			linkNeigbours = new CellNeighbours();
 		}
 
+		public Cell(CellSave cellSaveData)
+		{
+			position = cellSaveData.Position.ToVector2Int();
+		}
+
+		public void SetCellNeigbours(CellNeighbours neighbours)
+		{
+			this.Neighbours = neighbours;
+		}
+
+		public void SetCellLinks(CellNeighbours links)
+		{
+			this.linkNeigbours = links;
+		}
 
 		public Cell AddLink(Cell cell, bool bidirectional)
 		{
@@ -62,6 +75,38 @@ namespace LabyrinthSystem
 			if (Neighbours.West != null) neighbours.Add(Neighbours.West);
 
 			return neighbours;
+		}
+
+		public CellSave GetSaveData()
+		{
+			CellSave save = new CellSave();
+			save.Position = new PositionIndex(this.position);
+
+			CellNeighbourIndicies neighborIndicies = new CellNeighbourIndicies();
+			CellNeighbourIndicies linkIndicies = new CellNeighbourIndicies();
+
+			if (Neighbours.East != null)
+				neighborIndicies.East = new PositionIndex(Neighbours.East.position);
+			if (Neighbours.West != null)
+				neighborIndicies.West = new PositionIndex(Neighbours.West.position);
+			if (Neighbours.North != null)
+				neighborIndicies.North = new PositionIndex(Neighbours.North.position);
+			if (Neighbours.South != null)
+				neighborIndicies.South = new PositionIndex(Neighbours.South.position);
+
+			if (linkNeigbours.East != null)
+				linkIndicies.East = new PositionIndex(linkNeigbours.East.position);
+			if (linkNeigbours.West != null)
+				linkIndicies.West = new PositionIndex(linkNeigbours.West.position);
+			if (linkNeigbours.North != null)
+				linkIndicies.North = new PositionIndex(linkNeigbours.North.position);
+			if (linkNeigbours.South != null)
+				linkIndicies.South = new PositionIndex(linkNeigbours.South.position);
+
+			save.Neigbours = neighborIndicies;
+			save.Links = linkIndicies;
+
+			return save;
 		}
 	}
 }

@@ -2,7 +2,6 @@
 
 namespace LabyrinthSystem
 {
-	[System.Serializable]
 	public class Maze
 	{
 		public int Height { get; private set; }
@@ -21,10 +20,49 @@ namespace LabyrinthSystem
 			LinkNeighbours();
 		}
 
+		public Maze(MazeSave mazeSave)
+		{
+			InitGrid(mazeSave);
+		}
+
+		private void InitGrid(MazeSave mazeSave)
+		{
+			this.Height = mazeSave.Height;
+			this.Width = mazeSave.Height;
+			this.CellCount = mazeSave.CellCount;
+
+			_cells = new Cell[Height * Width];
+
+			for (int i = 0; i < _cells.Length; i++)
+			{
+				_cells[i] = new Cell(mazeSave.Cells[i]);
+			}
+			for (int i = 0; i < _cells.Length; i++)
+			{
+				_cells[i].SetCellLinks(Index2Neighbor(mazeSave.Cells[i].Links));
+				_cells[i].SetCellNeigbours(Index2Neighbor(mazeSave.Cells[i].Neigbours));
+			}
+		}
+
+		public CellNeighbours Index2Neighbor(CellNeighbourIndicies indicies)
+		{
+			CellNeighbours neighbours = new CellNeighbours();
+			
+			if (indicies.East != null)
+				neighbours.East = _cells[indicies.East.y * Width + indicies.East.x];
+			if (indicies.West != null)
+				neighbours.West = _cells[indicies.West.y * Width + indicies.West.x];
+			if (indicies.North != null)
+				neighbours.North = _cells[indicies.North.y * Width + indicies.North.x];
+			if (indicies.South != null)
+				neighbours.South = _cells[indicies.South.y * Width + indicies.South.x];
+
+			return neighbours;
+		}
+
 		private void InitGrid()
 		{
 			_cells = new Cell[Height * Width];
-
 			
 			for (int i = 0; i < Height; i++)
 			{
@@ -72,6 +110,23 @@ namespace LabyrinthSystem
 		public Cell GetCell(int x, int y)
 		{
 			return _cells[y * Width + x];
+		}
+
+		public MazeSave GetSaveData()
+		{
+			MazeSave save = new MazeSave();
+
+			save.Height = Height;
+			save.Width = Width;
+			save.CellCount = CellCount;
+			save.Cells = new CellSave[CellCount];
+			
+			for (int i = 0; i < CellCount; i++)
+			{
+				save.Cells[i] = _cells[i].GetSaveData();
+			}
+
+			return save;
 		}
 	}
 	
