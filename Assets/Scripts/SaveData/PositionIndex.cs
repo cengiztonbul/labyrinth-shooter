@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+[System.Serializable]
 public class PositionIndex
 {
 	public int x;
@@ -16,4 +17,3 @@ public class PositionIndex
 		return new Vector2Int(x, y);
 	}
 }
-

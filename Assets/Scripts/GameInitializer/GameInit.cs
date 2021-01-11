@@ -1,13 +1,22 @@
 ﻿using UnityEngine;
 using LabyrinthSystem;
 
+
 public class GameInit : MonoBehaviour
 {
 	[SerializeField] WorldGenerator worldGenerator;
 	[SerializeField] Vector2Int labyrinthSize;
-
+	string _encodePassword;
 	Maze maze;
-	
+
+	private void Start()
+	{
+		string _encodePassword = "labyrinth_shooter_password";
+		BayatGames.SaveGameFree.SaveGame.EncodePassword = _encodePassword;
+		BayatGames.SaveGameFree.SaveGame.Encode = true;
+		BayatGames.SaveGameFree.SaveGame.Serializer = new BayatGames.SaveGameFree.Serializers.SaveGameBinarySerializer();
+	}
+
 	public void OnNewGameStart()
 	{
 		maze = worldGenerator.GenerateWorld(labyrinthSize.x, labyrinthSize.y);
@@ -18,8 +27,6 @@ public class GameInit : MonoBehaviour
 		GameData saveData = new GameData();
 		saveData.labyrinth = maze.GetSaveData();
 		BayatGames.SaveGameFree.SaveGame.Save<GameData>("game_data", saveData);
-		Vector2Int pos = new Vector2Int(1, 4);
-		BayatGames.SaveGameFree.SaveGame.Save<Vector2Int>("pos", pos);
 
 	}
 
@@ -33,8 +40,6 @@ public class GameInit : MonoBehaviour
 	{
 
 		GameData gd = BayatGames.SaveGameFree.SaveGame.Load<GameData>("game_data");
-		Vector2Int pos = BayatGames.SaveGameFree.SaveGame.Load<Vector2Int>("pos");
-		Debug.Log("loaded_pos: " + pos);
 		Maze m = new Maze(gd.labyrinth);
 		worldGenerator.InstantiateLabyrinth(m);
 	}
