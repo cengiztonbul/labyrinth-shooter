@@ -3,12 +3,12 @@ using SaveSystem.Data;
 
 namespace SaveSystem
 {
-	public class SaveLoadGameData
+	public class LocalDataManager
 	{
 		private readonly string _encodePassword = "labyrinth_shooter_password";
 		private readonly string _saveFileName = "save.data";
 		
-		public SaveLoadGameData()
+		public LocalDataManager()
 		{
 			BayatGames.SaveGameFree.SaveGame.EncodePassword = _encodePassword;
 			BayatGames.SaveGameFree.SaveGame.Encode = true;

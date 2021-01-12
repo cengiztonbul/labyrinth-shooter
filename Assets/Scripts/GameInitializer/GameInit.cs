@@ -2,44 +2,40 @@
 using UnityEngine.UI;
 using LabyrinthSystem;
 using SaveSystem.Data;
+using SaveSystem;
 using System;
 
 public class GameInit : MonoBehaviour
 {
 	[SerializeField] WorldGenerator worldGenerator;
-	[SerializeField] Vector2Int labyrinthSize;
-	[SerializeField] Button loadButton;
+	[SerializeField] NewGameManager newGameManager;
 
+	[SerializeField] Button loadButton;
+	
 	Maze maze;
 	GameData gameData;
-	SaveSystem.SaveLoadGameData gameSaver;
+	LocalDataManager gameSaver;
 
 	private void Awake()
 	{
 		gameData = new GameData();
-		gameSaver = new SaveSystem.SaveLoadGameData();
+		gameSaver = new LocalDataManager();
 	}
 
 	private void Start()
 	{
-		loadButton.interactable = gameSaver.SaveFileExist();	
+		loadButton.interactable = gameSaver.SaveFileExist();
 	}
 
 	public void OnNewGameStart()
 	{
-		maze = worldGenerator.GenerateWorld(labyrinthSize.x, labyrinthSize.y);
+		maze = worldGenerator.GenerateWorld(newGameManager.PreferredLabyrinthSize.x, newGameManager.PreferredLabyrinthSize.y);
 		gameData.maze = maze;
 	}
 
 	public void SaveGame()
 	{
 		gameSaver.Save(gameData);
-	}
-
-	public void Init(GameSaveData gd)
-	{
-		Maze m = new Maze(gd.labyrinth);
-		worldGenerator.InstantiateLabyrinth(m);
 	}
 
 	public void LoadGameData()
