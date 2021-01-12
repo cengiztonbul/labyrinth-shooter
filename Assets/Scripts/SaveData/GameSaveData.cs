@@ -3,13 +3,16 @@ namespace SaveSystem.Data
 	[System.Serializable]
 	public class GameSaveData
 	{
-		public MazeSaveData labyrinth { get; set; }
+		public MazeSaveData Labyrinth { get; set; }
+
+		public PlayerData PlayerData { get; set; }
 
 		public GameSaveData() { }
 
 		public GameSaveData(GameData gameData)
 		{
-			labyrinth = new MazeSaveData(gameData.maze);
+			Labyrinth = new MazeSaveData(gameData.maze);
+			PlayerData = new PlayerData(gameData.playerPosition, gameData.bulletCount);
 		}
 	}
 }

@@ -18,6 +18,7 @@ namespace SaveSystem
 		public void Save(GameData gameData)
 		{
 			GameSaveData saveData = new GameSaveData(gameData);
+			saveData.PlayerData = new PlayerData(gameData.playerPosition, gameData.bulletCount);
 			BayatGames.SaveGameFree.SaveGame.Save<GameSaveData>(_saveFileName, saveData);
 		}
 		
