@@ -40,6 +40,7 @@ public class GameInit : MonoBehaviour
 		startPos.y = 1;
 		playerObj = Instantiate(playerPref, startPos, Quaternion.identity);
 		startCamera.gameObject.SetActive(false);
+		FindObjectOfType<EnemyAI>().SetMaze(maze);
 	}
 
 	public void SaveGame()

@@ -1,4 +1,5 @@
 ﻿using SaveSystem.Data;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace LabyrinthSystem
@@ -102,7 +103,6 @@ namespace LabyrinthSystem
 
 		public Cell GetRandomCell()
 		{
-
 			int row = Random.Range(0, Height);
 			int column = Random.Range(0, Width);
 			return GetCell(row, column);
@@ -111,6 +111,11 @@ namespace LabyrinthSystem
 		public Cell GetCell(int x, int y)
 		{
 			return _cells[y * Width + x];
+		}
+
+		public int Get1DDimension(Vector2Int position)
+		{
+			return position.y * Width + position.x;
 		}
 	}
 	

@@ -76,6 +76,18 @@ namespace LabyrinthSystem
 
 			return neighbours;
 		}
+		
+		public List<Cell> GetLinks()
+		{
+			List<Cell> neighbours = new List<Cell>();
+
+			if (linkNeigbours.North != null) neighbours.Add(linkNeigbours.North);
+			if (linkNeigbours.South != null) neighbours.Add(linkNeigbours.South);
+			if (linkNeigbours.East != null) neighbours.Add(linkNeigbours.East);
+			if (linkNeigbours.West != null) neighbours.Add(linkNeigbours.West);
+
+			return neighbours;
+		}
 
 		public CellSaveData GetSaveData()
 		{
