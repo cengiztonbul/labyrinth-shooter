@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using SaveSystem.Data;
+using UnityEngine;
 
 namespace LabyrinthSystem
 {
@@ -20,12 +21,12 @@ namespace LabyrinthSystem
 			LinkNeighbours();
 		}
 
-		public Maze(MazeSave mazeSave)
+		public Maze(MazeSaveData mazeSave)
 		{
 			InitGrid(mazeSave);
 		}
 
-		private void InitGrid(MazeSave mazeSave)
+		private void InitGrid(MazeSaveData mazeSave)
 		{
 			this.Height = mazeSave.Height;
 			this.Width = mazeSave.Height;
@@ -110,23 +111,6 @@ namespace LabyrinthSystem
 		public Cell GetCell(int x, int y)
 		{
 			return _cells[y * Width + x];
-		}
-
-		public MazeSave GetSaveData()
-		{
-			MazeSave save = new MazeSave();
-
-			save.Height = Height;
-			save.Width = Width;
-			save.CellCount = CellCount;
-			save.Cells = new CellSave[CellCount];
-			
-			for (int i = 0; i < CellCount; i++)
-			{
-				save.Cells[i] = _cells[i].GetSaveData();
-			}
-
-			return save;
 		}
 	}
 	

@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using SaveSystem.Data;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace LabyrinthSystem
 {
 	public class Cell
 	{
-		Vector2Int position;
+		public Vector2Int position;
 		
 		public CellNeighbours Neighbours { get; set; }
 		public CellNeighbours linkNeigbours;
@@ -21,7 +22,7 @@ namespace LabyrinthSystem
 			linkNeigbours = new CellNeighbours();
 		}
 
-		public Cell(CellSave cellSaveData)
+		public Cell(CellSaveData cellSaveData)
 		{
 			position = cellSaveData.Position.ToVector2Int();
 		}
@@ -64,7 +65,6 @@ namespace LabyrinthSystem
 			return this;
 		}
 
-
 		public List<Cell> GetNeighbours()
 		{
 			List<Cell> neighbours = new List<Cell>();
@@ -77,9 +77,9 @@ namespace LabyrinthSystem
 			return neighbours;
 		}
 
-		public CellSave GetSaveData()
+		public CellSaveData GetSaveData()
 		{
-			CellSave save = new CellSave();
+			CellSaveData save = new CellSaveData();
 			save.Position = new PositionIndex(this.position);
 
 			CellNeighbourIndicies neighborIndicies = new CellNeighbourIndicies();
