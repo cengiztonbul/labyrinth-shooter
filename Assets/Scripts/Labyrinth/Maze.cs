@@ -113,7 +113,7 @@ namespace LabyrinthSystem
 			return _cells[y * Width + x];
 		}
 
-		public int Get1DDimension(Vector2Int position)
+		public int GetSingleDimensionIndex(Vector2Int position)
 		{
 			return position.y * Width + position.x;
 		}

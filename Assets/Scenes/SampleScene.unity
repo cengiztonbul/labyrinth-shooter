@@ -276,7 +276,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 124575802}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.542185, y: -9.133627, z: 16.020725}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 596375828}
@@ -587,6 +587,8 @@ MonoBehaviour:
   newGameManager: {fileID: 1471189579}
   loadButton: {fileID: 1599348155}
   playerPref: {fileID: 5815050963971990304, guid: c1cc5dde3972ee04da4de35f80699578,
+    type: 3}
+  enemyPref: {fileID: 8975544630970589067, guid: 68cf20e9496406f4ea867dedc86e00b7,
     type: 3}
   startCamera: {fileID: 1396525182}
   playerObj: {fileID: 0}
@@ -1347,6 +1349,9 @@ MonoBehaviour:
   labyrinthSizeEasy: {x: 10, y: 10}
   labyrinthSizeNormal: {x: 20, y: 20}
   labyrinthSizeHard: {x: 30, y: 30}
+  enemyCountEasy: 1
+  enemyCountNormal: 5
+  enemyCountHard: 10
 --- !u!1 &1476688898
 GameObject:
   m_ObjectHideFlags: 0

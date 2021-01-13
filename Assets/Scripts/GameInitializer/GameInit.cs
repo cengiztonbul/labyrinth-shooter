@@ -12,6 +12,7 @@ public class GameInit : MonoBehaviour
 
 	[SerializeField] Button loadButton;
 	[SerializeField] GameObject playerPref;
+	[SerializeField] GameObject enemyPref;
 	[SerializeField] Camera startCamera;
 	[SerializeField] GameObject playerObj;
 
@@ -40,7 +41,11 @@ public class GameInit : MonoBehaviour
 		startPos.y = 1;
 		playerObj = Instantiate(playerPref, startPos, Quaternion.identity);
 		startCamera.gameObject.SetActive(false);
-		FindObjectOfType<EnemyAI>().SetMaze(maze);
+
+		for (int i = 0; i < newGameManager.PreferredEnemyCount; i++)
+		{
+			CreateEnemy();
+		}
 	}
 
 	public void SaveGame()
@@ -66,5 +71,15 @@ public class GameInit : MonoBehaviour
 		{
 			Debug.LogError(exception);
 		}
+	}
+
+	public void CreateEnemy()
+	{
+		Vector3 position = new Vector3();
+		position.x = UnityEngine.Random.Range(0, newGameManager.PreferredLabyrinthSize.x);
+		position.z = UnityEngine.Random.Range(0, newGameManager.PreferredLabyrinthSize.y);
+		position.y = 0.5f;
+		EnemyAI enemy = Instantiate(enemyPref, position, Quaternion.identity).GetComponent<EnemyAI>();
+		enemy.SetMaze(gameData.maze);
 	}
 }
