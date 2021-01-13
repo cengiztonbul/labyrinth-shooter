@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 8975544630970589070}
   - component: {fileID: 8975544630970589065}
   - component: {fileID: 8975544630970589064}
+  - component: {fileID: -6934981719449303850}
+  - component: {fileID: -1607774643385434351}
   m_Layer: 0
   m_Name: EnemyAI
   m_TagString: Untagged
@@ -106,3 +108,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4da7d2b13f5b054e821c307bd24763b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-6934981719449303850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8975544630970589067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7480ca9252e59a340b66a8fde18cb02a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idle: {fileID: -1607774643385434351}
+--- !u!114 &-1607774643385434351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8975544630970589067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49311f494069bbd4cba647d0255c9c35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  patrol: {fileID: -6934981719449303850}
+  minIdleTime: 2
+  maxIdleTime: 5
