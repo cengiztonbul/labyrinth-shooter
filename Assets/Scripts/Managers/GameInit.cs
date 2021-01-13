@@ -4,6 +4,7 @@ using LabyrinthSystem;
 using SaveSystem.Data;
 using SaveSystem;
 using System;
+using System.Collections.Generic;
 
 public class GameInit : MonoBehaviour
 {
@@ -19,11 +20,13 @@ public class GameInit : MonoBehaviour
 	Maze maze;
 	GameData gameData;
 	LocalDataManager gameSaver;
+	List<EnemyAI> enemies;
 
 	private void Awake()
 	{
 		gameData = new GameData();
 		gameSaver = new LocalDataManager();
+		enemies = new List<EnemyAI>();
 	}
 
 	private void Start()
@@ -52,6 +55,13 @@ public class GameInit : MonoBehaviour
 	{
 		gameData.playerPosition = playerObj.transform.position;
 		gameData.bulletCount = playerObj.GetComponent<PlayerShooting>().BulletCount;
+		gameData.enemyPositions = new List<Vector3>();
+		
+		for (int i = 0; i < enemies.Count; i++)
+		{
+			gameData.enemyPositions.Add(enemies[i].transform.position);
+		}
+		
 		gameSaver.Save(gameData);
 	}
 
@@ -66,6 +76,11 @@ public class GameInit : MonoBehaviour
 			PlayerShooting playerShooting = playerObj.GetComponent<PlayerShooting>();
 			playerShooting.SetPlayer(gameData.playerPosition, gameData.bulletCount);
 			startCamera.gameObject.SetActive(false);
+
+			for (int i = 0; i < gd.enemyPositions.Count; i++)
+			{
+				CreateEnemy(gd.enemyPositions[i]);
+			}
 		}
 		catch (Exception exception)
 		{
@@ -81,5 +96,13 @@ public class GameInit : MonoBehaviour
 		position.y = 0.5f;
 		EnemyAI enemy = Instantiate(enemyPref, position, Quaternion.identity).GetComponent<EnemyAI>();
 		enemy.SetMaze(gameData.maze);
+		enemies.Add(enemy);
+	}
+
+	public void CreateEnemy(Vector3 position)
+	{
+		EnemyAI enemy = Instantiate(enemyPref, position, Quaternion.identity).GetComponent<EnemyAI>();
+		enemy.SetMaze(gameData.maze);
+		enemies.Add(enemy);
 	}
 }

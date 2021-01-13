@@ -1,4 +1,5 @@
 ﻿using SaveSystem.Data;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameData
@@ -9,6 +10,8 @@ public class GameData
 	
 	public int bulletCount;
 
+	public List<Vector3> enemyPositions;
+
 	public GameData() { }
 	
 	public GameData(GameSaveData saveData)
@@ -16,5 +19,11 @@ public class GameData
 		maze = new LabyrinthSystem.Maze(saveData.Labyrinth);
 		playerPosition = saveData.PlayerData.PlayerPosition.ToVector3();
 		bulletCount = saveData.PlayerData.BulletCount;
+
+		enemyPositions = new List<Vector3>();
+		for (int i = 0; i < saveData.enemyPositions.Length; i++)
+		{
+			enemyPositions.Add(saveData.enemyPositions[i].ToVector3());
+		}
 	}
 }

@@ -12,17 +12,17 @@ public class EnemyAI : MonoBehaviour
 		currentState.OnStart();
 	}
 
+	public void Update()
+	{
+		currentState.Tick();
+	}
+
 	public void ChangeState(EnemyState nextState)
 	{
 		currentState?.OnExit();
 		nextState.OnStart();
 
 		this.currentState = nextState;
-	}
-
-	public void Update()
-	{
-		currentState.Tick();
 	}
 
 	public void SetMaze(Maze maze)
