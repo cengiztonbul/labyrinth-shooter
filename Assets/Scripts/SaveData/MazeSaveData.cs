@@ -15,7 +15,7 @@ namespace SaveSystem.Data
 
 		public MazeSaveData() { }
 		
-		public MazeSaveData(Maze maze)
+		public MazeSaveData(Labyrinth maze)
 		{
 			Height = maze.Height;
 			Width = maze.Width;

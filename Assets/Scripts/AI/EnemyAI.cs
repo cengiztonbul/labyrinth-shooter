@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-	public Maze maze;
+	public Labyrinth maze;
 	EnemyState currentState;
 
 	private void Start()
@@ -25,7 +25,7 @@ public class EnemyAI : MonoBehaviour
 		this.currentState = nextState;
 	}
 
-	public void SetMaze(Maze maze)
+	public void SetMaze(Labyrinth maze)
 	{
 		this.maze = maze;
 	}

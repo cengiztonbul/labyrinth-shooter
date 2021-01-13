@@ -17,7 +17,7 @@ public class GameInit : MonoBehaviour
 	[SerializeField] Camera startCamera;
 	[SerializeField] GameObject playerObj;
 
-	Maze maze;
+	Labyrinth maze;
 	GameData gameData;
 	LocalDataManager gameSaver;
 	List<EnemyAI> enemies;

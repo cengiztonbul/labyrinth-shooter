@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameData
 {
-	public LabyrinthSystem.Maze maze;
+	public LabyrinthSystem.Labyrinth maze;
 
 	public Vector3 playerPosition;
 	
@@ -16,7 +16,7 @@ public class GameData
 	
 	public GameData(GameSaveData saveData)
 	{
-		maze = new LabyrinthSystem.Maze(saveData.Labyrinth);
+		maze = new LabyrinthSystem.Labyrinth(saveData.Labyrinth);
 		playerPosition = saveData.PlayerData.PlayerPosition.ToVector3();
 		bulletCount = saveData.PlayerData.BulletCount;
 

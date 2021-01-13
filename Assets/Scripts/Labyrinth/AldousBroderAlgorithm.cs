@@ -4,11 +4,11 @@ using System.Linq;
 
 namespace LabyrinthSystem
 {
-	public class AldousBroderMazeGenerator
+	public class AldousBroderAlgorithm : ILabyrinthGenerator
 	{
-
-		public void CreateMaze(Maze grid)
+		public Labyrinth GenerateLabyrinth(int x, int y)
 		{
+			Labyrinth grid = new Labyrinth(x, y);
 			Random rand = new Random((int)DateTime.Now.Ticks);
 			Cell currentCell = grid.GetRandomCell();
 			int unvisited = grid.CellCount - 1;
@@ -26,6 +26,8 @@ namespace LabyrinthSystem
 
 				currentCell = nextNeighbour;
 			}
+
+			return grid;
 		}
 	}
 }

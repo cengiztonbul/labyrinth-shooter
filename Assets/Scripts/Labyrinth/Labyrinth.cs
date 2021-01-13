@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace LabyrinthSystem
 {
-	public class Maze
+	public class Labyrinth
 	{
 		public int Height { get; private set; }
 		public int Width { get; private set; }
@@ -12,7 +12,7 @@ namespace LabyrinthSystem
 
 		public Cell[] _cells;
 
-		public Maze(int height, int width)
+		public Labyrinth(int height, int width)
 		{
 			Height = height;
 			Width = width;
@@ -22,7 +22,7 @@ namespace LabyrinthSystem
 			LinkNeighbours();
 		}
 
-		public Maze(MazeSaveData mazeSave)
+		public Labyrinth(MazeSaveData mazeSave)
 		{
 			InitGrid(mazeSave);
 		}

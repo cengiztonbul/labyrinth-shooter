@@ -4,27 +4,24 @@ namespace LabyrinthSystem
 {
 	public class WorldGenerator : MonoBehaviour
 	{
-		public GameObject wall;
-		public GameObject ground;
+		[SerializeField] GameObject wall;
+		[SerializeField] GameObject ground;
 
-		public LabyrinthGenerator labyrinthGenerator;
-
+		public ILabyrinthGenerator labyrinthGenerator;
 
 		private void Awake()
 		{
-			labyrinthGenerator = new LabyrinthGenerator();	
+			labyrinthGenerator = new AldousBroderAlgorithm();
 		}
 
-
-		public Maze GenerateWorld(int size_x, int size_y)
+		public Labyrinth GenerateWorld(int size_x, int size_y)
 		{
-			Maze maze = labyrinthGenerator.GenerateLabyrinth(size_x, size_y);
-			InstantiateLabyrinth(maze);
-			return maze;
+			Labyrinth labyrinth = labyrinthGenerator.GenerateLabyrinth(size_x, size_y);
+			InstantiateLabyrinth(labyrinth);
+			return labyrinth;
 		}
 
-
-		public void InstantiateLabyrinth(Maze labyrinth)
+		public void InstantiateLabyrinth(Labyrinth labyrinth)
 		{
 			for (int i = 0; i < labyrinth.Width; i++)
 			{
@@ -34,7 +31,6 @@ namespace LabyrinthSystem
 				}
 			}
 		}
-
 
 		void InstantiateCell(Cell cell, int i, int j)
 		{
