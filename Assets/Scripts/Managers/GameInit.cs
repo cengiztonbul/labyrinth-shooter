@@ -36,16 +36,16 @@ public class GameInit : MonoBehaviour
 
 	public void OnNewGameStart()
 	{
-		maze = worldGenerator.GenerateWorld(newGameManager.PreferredLabyrinthSize.x, newGameManager.PreferredLabyrinthSize.y);
+		maze = worldGenerator.GenerateWorld(newGameManager.PrefferedDifficulty.labyrinthSize.x, newGameManager.PrefferedDifficulty.labyrinthSize.y);
 		gameData.maze = maze;
 		Vector3 startPos;
-		startPos.x = (int)(newGameManager.PreferredLabyrinthSize.x / 2);
-		startPos.z = (int)(newGameManager.PreferredLabyrinthSize.y / 2);
+		startPos.x = (int)(newGameManager.PrefferedDifficulty.labyrinthSize.x / 2);
+		startPos.z = (int)(newGameManager.PrefferedDifficulty.labyrinthSize.y / 2);
 		startPos.y = 1;
 		playerObj = Instantiate(playerPref, startPos, Quaternion.identity);
 		startCamera.gameObject.SetActive(false);
 
-		for (int i = 0; i < newGameManager.PreferredEnemyCount; i++)
+		for (int i = 0; i < newGameManager.PrefferedDifficulty.enemyCount; i++)
 		{
 			CreateEnemy();
 		}
@@ -91,8 +91,8 @@ public class GameInit : MonoBehaviour
 	public void CreateEnemy()
 	{
 		Vector3 position = new Vector3();
-		position.x = UnityEngine.Random.Range(0, newGameManager.PreferredLabyrinthSize.x);
-		position.z = UnityEngine.Random.Range(0, newGameManager.PreferredLabyrinthSize.y);
+		position.x = UnityEngine.Random.Range(0, newGameManager.PrefferedDifficulty.labyrinthSize.x);
+		position.z = UnityEngine.Random.Range(0, newGameManager.PrefferedDifficulty.labyrinthSize.y);
 		position.y = 0.5f;
 		EnemyAI enemy = Instantiate(enemyPref, position, Quaternion.identity).GetComponent<EnemyAI>();
 		enemy.SetMaze(gameData.maze);

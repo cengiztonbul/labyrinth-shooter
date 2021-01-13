@@ -8,23 +8,16 @@ public class NewGameManager : MonoBehaviour
 	[Header("UI")]
 	[SerializeField] Text difficultyText;
 
-	[Header("Difficulty Level Sizes")]
-	[SerializeField] Vector2Int labyrinthSizeEasy;
-	[SerializeField] Vector2Int labyrinthSizeNormal;
-	[SerializeField] Vector2Int labyrinthSizeHard;
+	[Header("Difficulty Levels")]
+	[SerializeField] GameDifficultySettings easy;
+	[SerializeField] GameDifficultySettings normal;
+	[SerializeField] GameDifficultySettings hard;
 
-	[Header("Difficulty Level Enemy Counts")]
-	[SerializeField] int enemyCountEasy;
-	[SerializeField] int enemyCountNormal;
-	[SerializeField] int enemyCountHard;
-
-	public Vector2Int PreferredLabyrinthSize { get; private set; }
-	public int PreferredEnemyCount { get; private set; }
+	public GameDifficultySettings PrefferedDifficulty { get; set; }
 
 	private void Start()
 	{
-		PreferredEnemyCount = enemyCountEasy;
-		PreferredLabyrinthSize = labyrinthSizeEasy;
+		PrefferedDifficulty = easy;
 		difficultyText.text = "Easy";
 	}
 
@@ -32,20 +25,17 @@ public class NewGameManager : MonoBehaviour
 	{
 		if (value == 1)
 		{
-			PreferredEnemyCount = enemyCountEasy;
-			PreferredLabyrinthSize = labyrinthSizeEasy;
+			PrefferedDifficulty = easy;
 			difficultyText.text = "Easy";
 		}
 		else if (value == 2)
 		{
-			PreferredEnemyCount = enemyCountNormal;
-			PreferredLabyrinthSize = labyrinthSizeNormal;
+			PrefferedDifficulty = normal;
 			difficultyText.text = "Normal";
 		}
 		else if (value == 3)
 		{
-			PreferredEnemyCount = enemyCountHard;
-			PreferredLabyrinthSize = labyrinthSizeHard;
+			PrefferedDifficulty = hard;
 			difficultyText.text = "Hard";
 		}
 	}
