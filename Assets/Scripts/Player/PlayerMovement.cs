@@ -6,9 +6,11 @@ public class PlayerMovement : MonoBehaviour
     float xDirection;
     float zDirection;
     Transform cameraObj;
+    Rigidbody rb;
 
     private void Start()
 	{
+        rb = GetComponent<Rigidbody>();
         cameraObj = GetComponentInChildren<Camera>().transform;
         cameraObj.parent = null;
 	}
@@ -18,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
         xDirection = Input.GetAxis("Horizontal");
         zDirection = Input.GetAxis("Vertical");
         Vector3 moveDirection = new Vector3(xDirection, 0.0f, zDirection);
-        transform.position += moveDirection * playerspeed * Time.deltaTime;
+        // transform.position += moveDirection * playerspeed * Time.deltaTime;
+        rb.MovePosition(transform.position += moveDirection * playerspeed * Time.deltaTime);
     }
 }

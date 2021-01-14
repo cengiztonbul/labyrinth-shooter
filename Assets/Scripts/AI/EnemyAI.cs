@@ -1,8 +1,10 @@
 ﻿using LabyrinthSystem;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyAI : MonoBehaviour
 {
+
 	public Labyrinth maze;
 	EnemyState currentState;
 
@@ -21,7 +23,6 @@ public class EnemyAI : MonoBehaviour
 	{
 		currentState?.OnExit();
 		nextState.OnStart();
-
 		this.currentState = nextState;
 	}
 

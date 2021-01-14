@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyState : MonoBehaviour
 {
+	public string stateName = "";
 	protected EnemyAI AI;
 
 	private void Awake()

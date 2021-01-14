@@ -5,6 +5,14 @@ using UnityEngine;
 public class PatrolState : EnemyState
 {
 	[SerializeField] EnemyState idle;
+	[SerializeField] EnemyState chase;
+	Transform player;
+
+	private void Start()
+	{
+		stateName = "Patrol State";
+		player = FindObjectOfType<PlayerShooting>().transform;
+	}
 
 	public override void OnStart()
 	{
@@ -14,6 +22,7 @@ public class PatrolState : EnemyState
 		visited = new bool[AI.maze.CellCount];
 		List<Cell> path = new List<Cell>();
 		FindPath(CurrentCell(), target, path);
+		SetNextCell();
 	}
 
 	public override void Tick()
@@ -22,8 +31,24 @@ public class PatrolState : EnemyState
 		{
 			AI.ChangeState(idle);
 		}
-
+		if (CanSeePlayer())
+		{
+			AI.ChangeState(chase);
+		}
 		FollowPath();
+	}
+
+	public bool CanSeePlayer()
+	{
+		Ray ray = new Ray(transform.position, (player.position - transform.position).normalized);
+		if (Physics.Raycast(ray, out RaycastHit hit))
+		{
+			if (hit.collider.transform == player)
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public Vector2Int RandomTarget()
@@ -95,7 +120,7 @@ public class PatrolState : EnemyState
 			nextCell = null;
 			hasTarget = false;
 		}
-	}
+	} 
 
 	private void SetNextCell()
 	{
@@ -120,7 +145,7 @@ public class PatrolState : EnemyState
 		targetPos.x = target.x;
 		targetPos.z = target.y;
 		targetPos.y = 0.5f;
-		return (targetPos - transform.position).sqrMagnitude <= 0.3f;
+		return (targetPos - transform.position).sqrMagnitude <= 0.2f;
 	}
 	#endregion
 

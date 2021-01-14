@@ -1346,12 +1346,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   difficultyText: {fileID: 15026769}
-  labyrinthSizeEasy: {x: 10, y: 10}
-  labyrinthSizeNormal: {x: 20, y: 20}
-  labyrinthSizeHard: {x: 30, y: 30}
-  enemyCountEasy: 1
-  enemyCountNormal: 5
-  enemyCountHard: 10
+  easy: {fileID: 11400000, guid: 7b7e70dfbde9e204ead103e22698a858, type: 2}
+  normal: {fileID: 11400000, guid: 66dd61b3df08e38438103554eee9d637, type: 2}
+  hard: {fileID: 11400000, guid: 66dd61b3df08e38438103554eee9d637, type: 2}
 --- !u!1 &1476688898
 GameObject:
   m_ObjectHideFlags: 0
