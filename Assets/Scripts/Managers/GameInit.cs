@@ -44,7 +44,7 @@ public class GameInit : MonoBehaviour
 		startPos.y = 1;
 		playerObj = Instantiate(playerPref, startPos, Quaternion.identity);
 		startCamera.gameObject.SetActive(false);
-
+		playerObj.GetComponent<PlayerShooting>().SetPlayer(startPos, newGameManager.PrefferedDifficulty.bulletCount);
 		for (int i = 0; i < newGameManager.PrefferedDifficulty.enemyCount; i++)
 		{
 			CreateEnemy();

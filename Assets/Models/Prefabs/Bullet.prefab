@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1022694867}
   - component: {fileID: -6223205069778106231}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -134,14 +134,14 @@ TrailRenderer:
       - serializedVersion: 3
         time: 0
         value: 0
-        inSlope: 0.8928584
-        outSlope: 0.8928584
+        inSlope: 0.56631887
+        outSlope: 0.56631887
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.29577523
+        outWeight: 0.11875845
       - serializedVersion: 3
-        time: 0.9749999
+        time: 0.7960448
         value: 0
         inSlope: 0
         outSlope: 0

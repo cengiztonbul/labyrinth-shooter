@@ -8,7 +8,11 @@ public class ChasePlayerState : EnemyState
 	Transform player;
 	Vector3 lastSeenPosition;
 	bool canSeePlayer;
+	float damagePeriod = 0.3f;
+	float time = 0;
 	
+	float damagePower = 10;
+
 	private void Start()
 	{
 		stateName = "Chase State";
@@ -18,6 +22,11 @@ public class ChasePlayerState : EnemyState
 
 	public override void Tick()
 	{
+		time += Time.deltaTime;
+		if (!player.gameObject.activeSelf)
+		{
+			AI.ChangeState(idle);
+		}
 		canSeePlayer = CanSeePlayer();
 		if (!canSeePlayer && DistanceToLastSeenPosition() < 0.3f)
 		{
@@ -26,6 +35,11 @@ public class ChasePlayerState : EnemyState
 		if (DistanceToLastSeenPosition() > 0.3f)
 		{
 			MoveToLastSeenPosition();
+		}
+		if ((canSeePlayer) && (time > damagePeriod) && (DistanceToLastSeenPosition() <= 0.3f))
+		{
+			player.GetComponent<Health>().Damage(damagePower);
+			time = 0;
 		}
 	}
 

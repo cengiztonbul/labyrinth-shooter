@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Enemy
   - PauseMenu
+  - HUD
+  - BulletText
   layers:
   - Default
   - TransparentFX

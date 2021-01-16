@@ -15,11 +15,12 @@ GameObject:
   - component: {fileID: -6934981719449303850}
   - component: {fileID: -1607774643385434351}
   - component: {fileID: 7390545224468868762}
+  - component: {fileID: 6259155814312384575}
   - component: {fileID: 852640857895659100}
   - component: {fileID: -6203248331289050874}
   m_Layer: 0
   m_Name: EnemyAI
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97,7 +98,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4da7d2b13f5b054e821c307bd24763b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stateText: {fileID: 0}
 --- !u!114 &-6934981719449303850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,6 +146,21 @@ MonoBehaviour:
   stateName: 
   chaseSpeed: 2
   idle: {fileID: -1607774643385434351}
+--- !u!114 &6259155814312384575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8975544630970589067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5b7b8c6d821f514481a7558b2f3b6bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBarObj: {fileID: 8663258195323824749, guid: e30522e267e7d884ea6a0589d75597b4,
+    type: 3}
+  maxHealth: 100
 --- !u!136 &852640857895659100
 CapsuleCollider:
   m_ObjectHideFlags: 0
