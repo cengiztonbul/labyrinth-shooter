@@ -93,6 +93,31 @@ public class GameInit : MonoBehaviour
 		}
 	}
 
+	public void ClearScene()
+	{
+		for(int i = 0; i < enemies.Count; i++)
+		{
+			if (enemies[i] != null)
+			{
+				Destroy(enemies[i].GetComponent<Health>().healthBar.gameObject);
+				Destroy(enemies[i].gameObject);
+			}
+		}
+		Destroy(playerObj);
+		GameObject[] mapObjects = GameObject.FindGameObjectsWithTag("MapObject");
+		for (int i = 0; i < mapObjects.Length; i++)
+		{
+			Destroy(mapObjects[i]);
+		}
+
+		gameData = new GameData();
+		gameSaver = new LocalDataManager();
+		enemies = new List<EnemyAI>();
+
+		startCamera.gameObject.SetActive(true);
+		Destroy(GameObject.Find("PlayerCamera"));
+	}
+
 	public void CreateEnemy()
 	{
 		Vector3 position = new Vector3();

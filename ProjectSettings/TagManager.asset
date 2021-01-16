@@ -8,6 +8,8 @@ TagManager:
   - PauseMenu
   - HUD
   - BulletText
+  - MapObject
+  - GameOverScreen
   layers:
   - Default
   - TransparentFX

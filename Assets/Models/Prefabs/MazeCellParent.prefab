@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2786032549041766042}
   m_Layer: 0
   m_Name: MazeCellParent
-  m_TagString: Untagged
+  m_TagString: MapObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
