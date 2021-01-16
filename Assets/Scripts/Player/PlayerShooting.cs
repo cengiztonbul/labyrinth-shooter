@@ -1,5 +1,6 @@
 ﻿using SaveSystem.Data;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerShooting : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class PlayerShooting : MonoBehaviour
 	[SerializeField] LayerMask aimLayer;
 	[SerializeField] Camera playerCamera;
 	[SerializeField] float shootingPeriod = 0.07f;
+
+	Text bulletText;
 	
 	public int BulletCount { get; private set; }
 
@@ -15,7 +18,8 @@ public class PlayerShooting : MonoBehaviour
 	
 	private void Start()
 	{
-		BulletCount = 200;
+		bulletText = GameObject.FindGameObjectWithTag("BulletText").GetComponent<Text>();
+		bulletText.text = "Bullet: " + BulletCount;
 	}
 
 	private void Update()
@@ -27,7 +31,6 @@ public class PlayerShooting : MonoBehaviour
 		{
 			Shoot();
 			time = 0;
-			BulletCount -= 1;
 		}
 	}
 
@@ -45,11 +48,13 @@ public class PlayerShooting : MonoBehaviour
 	void Shoot()
 	{
 		Instantiate(bullet, bulletStartPos.position, bulletStartPos.rotation);
+		BulletCount -= 1;
+		bulletText.text = "Bullet: " + BulletCount;
 	}
 
 	public void SetPlayer(Vector3 position, int bulletCount)
 	{
-		BulletCount = bulletCount;
+		this.BulletCount = bulletCount;
 		transform.position = position;
 	}
 }

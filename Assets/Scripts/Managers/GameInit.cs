@@ -56,7 +56,7 @@ public class GameInit : MonoBehaviour
 		gameData.playerPosition = playerObj.transform.position;
 		gameData.bulletCount = playerObj.GetComponent<PlayerShooting>().BulletCount;
 		gameData.enemyPositions = new List<Vector3>();
-		
+		Debug.Log("BulletCount: " + gameData.bulletCount);
 		for (int i = 0; i < enemies.Count; i++)
 		{
 			gameData.enemyPositions.Add(enemies[i].transform.position);
@@ -74,6 +74,7 @@ public class GameInit : MonoBehaviour
 			worldGenerator.InstantiateLabyrinth(gd.maze);
 			playerObj = Instantiate(playerPref, gd.playerPosition, Quaternion.identity);
 			PlayerShooting playerShooting = playerObj.GetComponent<PlayerShooting>();
+			Debug.Log("bullet count: " + gameData.bulletCount);
 			playerShooting.SetPlayer(gameData.playerPosition, gameData.bulletCount);
 			startCamera.gameObject.SetActive(false);
 
