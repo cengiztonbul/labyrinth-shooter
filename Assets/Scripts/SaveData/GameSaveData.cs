@@ -9,6 +9,10 @@ namespace SaveSystem.Data
 
 		public Position[] enemyPositions { get; set; }
 
+		public float[] enemyHealth { get; set; }
+		
+		public float playerHealth { get; set; }
+
 		public GameSaveData() { }
 
 		public GameSaveData(GameData gameData)
@@ -17,9 +21,13 @@ namespace SaveSystem.Data
 			PlayerData = new PlayerData(gameData.playerPosition, gameData.bulletCount);
 
 			enemyPositions = new Position[gameData.enemyPositions.Count];
+			enemyHealth = new float[gameData.enemyHealth.Count];
+			playerHealth = gameData.playerHealth;
+			
 			for (int i = 0; i < gameData.enemyPositions.Count; i++)
 			{
 				enemyPositions[i] = new Position(gameData.enemyPositions[i]);
+				enemyHealth[i] = gameData.enemyHealth[i];
 			}
 		}
 	}

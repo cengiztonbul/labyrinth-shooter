@@ -55,11 +55,16 @@ public class GameInit : MonoBehaviour
 	{
 		gameData.playerPosition = playerObj.transform.position;
 		gameData.bulletCount = playerObj.GetComponent<PlayerShooting>().BulletCount;
+		gameData.playerHealth = playerObj.GetComponent<Health>().health;
 		gameData.enemyPositions = new List<Vector3>();
-		Debug.Log("BulletCount: " + gameData.bulletCount);
+		gameData.enemyHealth = new List<float>();
 		for (int i = 0; i < enemies.Count; i++)
 		{
-			gameData.enemyPositions.Add(enemies[i].transform.position);
+			if (enemies[i].gameObject.activeSelf)
+			{
+				gameData.enemyPositions.Add(enemies[i].transform.position);
+				gameData.enemyHealth.Add(enemies[i].GetComponent<Health>().health);
+			}
 		}
 		
 		gameSaver.Save(gameData);
@@ -77,10 +82,10 @@ public class GameInit : MonoBehaviour
 			Debug.Log("bullet count: " + gameData.bulletCount);
 			playerShooting.SetPlayer(gameData.playerPosition, gameData.bulletCount);
 			startCamera.gameObject.SetActive(false);
-
+			playerShooting.GetComponent<Health>().SetHealth(gameData.playerHealth);
 			for (int i = 0; i < gd.enemyPositions.Count; i++)
 			{
-				CreateEnemy(gd.enemyPositions[i]);
+				CreateEnemy(gd.enemyPositions[i], gd.enemyHealth[i]);
 			}
 		}
 		catch (Exception exception)
@@ -100,10 +105,11 @@ public class GameInit : MonoBehaviour
 		enemies.Add(enemy);
 	}
 
-	public void CreateEnemy(Vector3 position)
+	public void CreateEnemy(Vector3 position, float health)
 	{
 		EnemyAI enemy = Instantiate(enemyPref, position, Quaternion.identity).GetComponent<EnemyAI>();
 		enemy.SetMaze(gameData.maze);
+		enemy.GetComponent<Health>().SetHealth(health);
 		enemies.Add(enemy);
 	}
 }

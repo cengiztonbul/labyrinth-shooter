@@ -8,25 +8,32 @@ public class Health : MonoBehaviour
 	HealthBar healthBar;
 
 	[SerializeField] float maxHealth = 100f;
-	private float _health;
+	public float health;
 
-	private void Start()
+	private void Awake()
 	{
-		_health = maxHealth;
-		healthBar = Instantiate(healthBarObj, transform.position + Vector3.up, Quaternion.identity).GetComponent<HealthBar>();
+		health = maxHealth;
+		healthBar = Instantiate(healthBarObj, transform.position, Quaternion.identity).GetComponent<HealthBar>();
 		healthBar.SetOwner(transform);
+		healthBar.SetSize(health / maxHealth);
 	}
 
 	public void Damage(float damage)
 	{
-		_health -= damage;
+		health -= damage;
 		
-		if (_health <= 0)
+		if (health <= 0)
 		{
 			Destroy(healthBar.gameObject);
 			gameObject.SetActive(false);
 		}
 
-		healthBar.SetSize(_health / maxHealth);
+		healthBar.SetSize(health / maxHealth);
+	}
+
+	public void SetHealth(float health)
+	{
+		this.health = health;
+		healthBar.SetSize(health / maxHealth);
 	}
 }
