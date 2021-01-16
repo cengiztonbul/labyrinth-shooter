@@ -7,7 +7,9 @@ namespace LabyrinthSystem
 	public class Labyrinth
 	{
 		public int Height { get; private set; }
+
 		public int Width { get; private set; }
+
 		public int CellCount { get; private set; }
 
 		public Cell[] _cells;

@@ -27,7 +27,7 @@ public class PlayerShooting : MonoBehaviour
 		time += Time.deltaTime;
 
 		Aim();
-		if (Input.GetMouseButton(0) && time > shootingPeriod && BulletCount > 0)
+		if (Input.GetMouseButton(0) && (time > shootingPeriod) && BulletCount > 0)
 		{
 			Shoot();
 			time = 0;

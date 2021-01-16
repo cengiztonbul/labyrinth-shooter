@@ -79,7 +79,6 @@ public class GameInit : MonoBehaviour
 			worldGenerator.InstantiateLabyrinth(gd.maze);
 			playerObj = Instantiate(playerPref, gd.playerPosition, Quaternion.identity);
 			PlayerShooting playerShooting = playerObj.GetComponent<PlayerShooting>();
-			Debug.Log("bullet count: " + gameData.bulletCount);
 			playerShooting.SetPlayer(gameData.playerPosition, gameData.bulletCount);
 			startCamera.gameObject.SetActive(false);
 			playerShooting.GetComponent<Health>().SetHealth(gameData.playerHealth);

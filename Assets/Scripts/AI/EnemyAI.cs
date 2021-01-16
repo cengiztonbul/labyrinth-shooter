@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 public class EnemyAI : MonoBehaviour
 {
-
 	public Labyrinth maze;
 	EnemyState currentState;
 

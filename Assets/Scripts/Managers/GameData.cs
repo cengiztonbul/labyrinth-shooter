@@ -25,7 +25,7 @@ public class GameData
 		bulletCount = saveData.PlayerData.BulletCount;
 		enemyPositions = new List<Vector3>();
 		enemyHealth = new List<float>();
-		playerHealth = saveData.playerHealth;
+		playerHealth = saveData.PlayerData.Health;
 		for (int i = 0; i < saveData.enemyPositions.Length; i++)
 		{
 			enemyPositions.Add(saveData.enemyPositions[i].ToVector3());

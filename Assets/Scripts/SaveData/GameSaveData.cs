@@ -11,18 +11,17 @@ namespace SaveSystem.Data
 
 		public float[] enemyHealth { get; set; }
 		
-		public float playerHealth { get; set; }
 
 		public GameSaveData() { }
 
 		public GameSaveData(GameData gameData)
 		{
 			Labyrinth = new MazeSaveData(gameData.maze);
-			PlayerData = new PlayerData(gameData.playerPosition, gameData.bulletCount);
+			PlayerData = new PlayerData(gameData.playerPosition, gameData.bulletCount, gameData.playerHealth);
 
 			enemyPositions = new Position[gameData.enemyPositions.Count];
 			enemyHealth = new float[gameData.enemyHealth.Count];
-			playerHealth = gameData.playerHealth;
+			PlayerData.Health = gameData.playerHealth;
 			
 			for (int i = 0; i < gameData.enemyPositions.Count; i++)
 			{

@@ -14,8 +14,11 @@ namespace SaveSystem.Data
 
 		public int BulletCount { get; set; }
 
-		public PlayerData(Vector3 position, int bulletCount)
+		public float Health { get; set; } 
+
+		public PlayerData(Vector3 position, int bulletCount, float health)
 		{
+			this.Health = health;
 			this.BulletCount = bulletCount;
 			PlayerPosition = new Position(position);
 		}
