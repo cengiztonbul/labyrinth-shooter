@@ -143,4 +143,14 @@ public class GameInit : MonoBehaviour
 		enemy.GetComponent<Health>().SetHealth(health);
 		enemies.Add(enemy);
 	}
+
+	public void FreezeTime()
+	{
+		Time.timeScale = 0;
+	}
+
+	public void ResumeTime()
+	{
+		Time.timeScale = 1;
+	}
 }

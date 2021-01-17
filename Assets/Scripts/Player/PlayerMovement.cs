@@ -33,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
         if (other.CompareTag("ExitPoint"))
         {
             exitScreen.SetActive(true);
+            Time.timeScale = 0;
             Destroy(this);
         }
     }
