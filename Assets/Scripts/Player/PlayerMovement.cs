@@ -7,9 +7,12 @@ public class PlayerMovement : MonoBehaviour
     float zDirection;
     Transform cameraObj;
     Rigidbody rb;
+    GameObject exitScreen;
 
     private void Start()
 	{
+        exitScreen = GameObject.FindGameObjectWithTag("WinScreen");
+        exitScreen.SetActive(false);
         rb = GetComponent<Rigidbody>();
         cameraObj = GetComponentInChildren<Camera>().transform;
         cameraObj.parent = null;
@@ -22,5 +25,15 @@ public class PlayerMovement : MonoBehaviour
         Vector3 moveDirection = new Vector3(xDirection, 0.0f, zDirection);
         // transform.position += moveDirection * playerspeed * Time.deltaTime;
         rb.MovePosition(transform.position += moveDirection * playerspeed * Time.deltaTime);
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("ExitPoint"))
+        {
+            exitScreen.SetActive(true);
+            Destroy(this);
+        }
     }
 }

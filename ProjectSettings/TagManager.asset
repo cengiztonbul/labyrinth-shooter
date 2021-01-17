@@ -10,6 +10,8 @@ TagManager:
   - BulletText
   - MapObject
   - GameOverScreen
+  - ExitPoint
+  - WinScreen
   layers:
   - Default
   - TransparentFX

@@ -95,7 +95,8 @@ public class GameInit : MonoBehaviour
 
 	public void ClearScene()
 	{
-		for(int i = 0; i < enemies.Count; i++)
+		Destroy(GameObject.FindGameObjectWithTag("ExitPoint"));
+		for (int i = 0; i < enemies.Count; i++)
 		{
 			if (enemies[i] != null)
 			{
@@ -103,7 +104,13 @@ public class GameInit : MonoBehaviour
 				Destroy(enemies[i].gameObject);
 			}
 		}
+		HealthBar hb = playerObj.GetComponent<Health>().healthBar;
+		if(hb != null)
+        {
+			Destroy(hb.gameObject);
+		}
 		Destroy(playerObj);
+
 		GameObject[] mapObjects = GameObject.FindGameObjectsWithTag("MapObject");
 		for (int i = 0; i < mapObjects.Length; i++)
 		{

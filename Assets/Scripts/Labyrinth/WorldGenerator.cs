@@ -6,6 +6,7 @@ namespace LabyrinthSystem
 	{
 		[SerializeField] GameObject wall;
 		[SerializeField] GameObject ground;
+		[SerializeField] GameObject exitPoint;
 
 		public ILabyrinthGenerator labyrinthGenerator;
 
@@ -30,7 +31,8 @@ namespace LabyrinthSystem
 				{
 					if (labyrinth.ExitIndex.x==i && labyrinth.ExitIndex.y == j)
                     {
-						Transform groundObj = Instantiate(ground, new Vector3(i, 0, j), Quaternion.identity).transform;
+						Instantiate(exitPoint, new Vector3(i, 0, j), Quaternion.identity);
+						Instantiate(ground, new Vector3(i, 0, j), Quaternion.identity);
 						continue;
 					}
 					InstantiateCell(labyrinth.GetCell(i, j), i, j);
