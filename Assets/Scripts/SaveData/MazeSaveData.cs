@@ -11,6 +11,8 @@ namespace SaveSystem.Data
 
 		public int CellCount { get; set; }
 
+		public PositionIndex ExitIndex { get; set; }
+
 		public CellSaveData[] Cells { get; set; }
 
 		public MazeSaveData() { }
@@ -26,6 +28,7 @@ namespace SaveSystem.Data
 			{
 				Cells[i] = new CellSaveData(maze._cells[i]);
 			}
+			ExitIndex = new PositionIndex(maze.ExitIndex);
 		}
 	}
 }

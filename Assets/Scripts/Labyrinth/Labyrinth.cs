@@ -15,6 +15,7 @@ namespace LabyrinthSystem
 		public Vector2Int ExitIndex { get; set; }
 
 
+
 		public Cell[] _cells;
 
 		public Labyrinth(int height, int width)
@@ -29,16 +30,18 @@ namespace LabyrinthSystem
 
 		public Labyrinth(MazeSaveData mazeSave)
 		{
+			this.Height = mazeSave.Height;
+			this.Width = mazeSave.Height;
+			this.CellCount = mazeSave.CellCount;
+			this.ExitIndex = mazeSave.ExitIndex.ToVector2Int();
+
+			_cells = new Cell[Height * Width];
 			InitGrid(mazeSave);
 		}
 
 		private void InitGrid(MazeSaveData mazeSave)
 		{
-			this.Height = mazeSave.Height;
-			this.Width = mazeSave.Height;
-			this.CellCount = mazeSave.CellCount;
-
-			_cells = new Cell[Height * Width];
+			
 
 			for (int i = 0; i < _cells.Length; i++)
 			{
