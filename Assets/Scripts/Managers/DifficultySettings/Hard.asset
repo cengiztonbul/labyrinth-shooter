@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Hard
   m_EditorClassIdentifier: 
   labyrinthSize: {x: 30, y: 30}
-  enemyCount: 15
-  bulletCount: 60
+  enemyCount: 18
+  bulletCount: 180

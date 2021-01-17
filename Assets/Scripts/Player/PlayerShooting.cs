@@ -19,7 +19,7 @@ public class PlayerShooting : MonoBehaviour
 	private void Start()
 	{
 		bulletText = GameObject.FindGameObjectWithTag("BulletText").GetComponent<Text>();
-		bulletText.text = "Bullet: " + BulletCount;
+		bulletText.text = "Ammo: " + BulletCount;
 	}
 
 	private void Update()
@@ -49,7 +49,7 @@ public class PlayerShooting : MonoBehaviour
 	{
 		Instantiate(bullet, bulletStartPos.position, bulletStartPos.rotation);
 		BulletCount -= 1;
-		bulletText.text = "Bullet: " + BulletCount;
+		bulletText.text = "Ammo: " + BulletCount;
 	}
 
 	public void SetPlayer(Vector3 position, int bulletCount)

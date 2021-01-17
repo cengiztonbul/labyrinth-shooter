@@ -95,7 +95,8 @@ public class GameInit : MonoBehaviour
 
 	public void ClearScene()
 	{
-		Destroy(GameObject.FindGameObjectWithTag("ExitPoint"));
+		GameObject exitPoint = GameObject.FindGameObjectWithTag("ExitPoint");
+		if (exitPoint != null) Destroy(exitPoint);
 		for (int i = 0; i < enemies.Count; i++)
 		{
 			if (enemies[i] != null)

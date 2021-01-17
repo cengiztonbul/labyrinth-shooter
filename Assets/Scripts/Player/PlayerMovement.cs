@@ -32,6 +32,9 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.CompareTag("ExitPoint"))
         {
+            GetComponent<PauseMenuController>().canOpen = false;
+            GetComponent<PauseMenuController>().ClosePauseMenu();
+            Destroy(other.gameObject);
             exitScreen.SetActive(true);
             Time.timeScale = 0;
             Destroy(this);

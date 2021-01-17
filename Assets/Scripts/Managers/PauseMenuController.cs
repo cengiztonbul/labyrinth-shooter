@@ -6,9 +6,10 @@ public class PauseMenuController : MonoBehaviour
 {
 	GameObject pauseMenu;
 	private bool _open = false;
-
+	public bool canOpen;
 	private void Start()
 	{
+		canOpen = true;
 		pauseMenu = GameObject.FindGameObjectWithTag("PauseMenu");
 		pauseMenu.SetActive(false);
 	}
@@ -23,17 +24,27 @@ public class PauseMenuController : MonoBehaviour
 
 	void ToggleMenu()
 	{
-		if (!_open)
+		if (canOpen)
 		{
-			_open = !_open;
-			pauseMenu.SetActive(_open);
-			Time.timeScale = 0;
-		}
-		else
-		{
-			_open = !_open;
-			pauseMenu.SetActive(_open);
-			Time.timeScale = 1;
+			if (!_open)
+			{
+				_open = !_open;
+				pauseMenu.SetActive(_open);
+				Time.timeScale = 0;
+			}
+			else
+			{
+				_open = !_open;
+				pauseMenu.SetActive(_open);
+				Time.timeScale = 1;
+			}
 		}
 	}
+
+	public void ClosePauseMenu()
+	{
+		_open = false;
+		pauseMenu.SetActive(false);
+	}
+
 }

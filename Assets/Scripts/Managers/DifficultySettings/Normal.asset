@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5ae6e73b6a22a4c8906f8c8f2c3aa9, type: 3}
   m_Name: Normal
   m_EditorClassIdentifier: 
-  labyrinthSize: {x: 20, y: 20}
-  enemyCount: 20
-  bulletCount: 80
+  labyrinthSize: {x: 25, y: 25}
+  enemyCount: 16
+  bulletCount: 200

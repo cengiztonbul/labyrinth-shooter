@@ -43,6 +43,8 @@ public class Health : MonoBehaviour
 			healthBar.gameObject.SetActive(false);
 			if (tag == "Player")
 			{
+				GetComponent<PauseMenuController>().canOpen = false;
+				GetComponent<PauseMenuController>().ClosePauseMenu();
 				gameOverScreen.SetActive(true);
 				Destroy(healthBar.gameObject);
 			}
