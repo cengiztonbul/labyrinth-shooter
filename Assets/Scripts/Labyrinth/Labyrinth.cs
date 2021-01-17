@@ -12,6 +12,9 @@ namespace LabyrinthSystem
 
 		public int CellCount { get; private set; }
 
+		public Vector2Int ExitIndex { get; set; }
+
+
 		public Cell[] _cells;
 
 		public Labyrinth(int height, int width)

@@ -23,10 +23,16 @@ namespace LabyrinthSystem
 
 		public void InstantiateLabyrinth(Labyrinth labyrinth)
 		{
+			
 			for (int i = 0; i < labyrinth.Width; i++)
 			{
 				for (int j = 0; j < labyrinth.Height; j++)
 				{
+					if (labyrinth.ExitIndex.x==i && labyrinth.ExitIndex.y == j)
+                    {
+						Transform groundObj = Instantiate(ground, new Vector3(i, 0, j), Quaternion.identity).transform;
+						continue;
+					}
 					InstantiateCell(labyrinth.GetCell(i, j), i, j);
 				}
 			}
