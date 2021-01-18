@@ -41,7 +41,7 @@ public class GameInit : MonoBehaviour
 		Vector3 startPos;
 		startPos.x = (int)(newGameManager.PrefferedDifficulty.labyrinthSize.x / 2);
 		startPos.z = (int)(newGameManager.PrefferedDifficulty.labyrinthSize.y / 2);
-		startPos.y = 1;
+		startPos.y = .3f;
 		playerObj = Instantiate(playerPref, startPos, Quaternion.identity);
 		startCamera.gameObject.SetActive(false);
 		playerObj.GetComponent<PlayerShooting>().SetPlayer(startPos, newGameManager.PrefferedDifficulty.bulletCount);
