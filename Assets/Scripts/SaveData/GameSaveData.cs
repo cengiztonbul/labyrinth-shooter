@@ -10,7 +10,6 @@ namespace SaveSystem.Data
 		public Position[] enemyPositions { get; set; }
 
 		public float[] enemyHealth { get; set; }
-		
 
 		public GameSaveData() { }
 

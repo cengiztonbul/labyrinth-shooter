@@ -29,9 +29,9 @@ public class GameInit : MonoBehaviour
 		enemies = new List<EnemyAI>();
 	}
 
-	private void Start()
+	private void OnEnable()
 	{
-		loadButton.interactable = gameSaver.SaveFileExist();
+		CheckSaveFile();
 	}
 
 	public void OnNewGameStart()
@@ -153,5 +153,10 @@ public class GameInit : MonoBehaviour
 	public void ResumeTime()
 	{
 		Time.timeScale = 1;
+	}
+
+	public void CheckSaveFile()
+	{
+		loadButton.interactable = gameSaver.SaveFileExist();
 	}
 }
